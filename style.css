@@ -6,8 +6,8 @@
     --hero-red: #FF0000;
     --hero-dots: #FFB700;
     --btn-blue: #3B82F6;
-    --btn-pink: #FF004E;
-    --neon-pink: #FF0066;
+    --btn-pink: #FF004E; /* 既存のピンク */
+    --neon-pink: #FF0066; /* 新しいネオンピンク */
     --grid-line: #E5E5E5;
     --comp-dark-bg: #1A202C;
     --comp-red: #E60033;
@@ -29,6 +29,7 @@ body {
     font-family: var(--font-sans);
     overflow-x: hidden;
     line-height: 1.8;
+    /* 固定CTAの分だけ下の余白を確保 */
     padding-bottom: 120px; 
 }
 h1, h2, h3, h4 { font-weight: 900; line-height: 1.2; }
@@ -97,30 +98,14 @@ header {
     text-align: center; font-weight: 900; border: 3px solid #D6004D; box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
     z-index: 3; transform: rotate(-10deg);
 }
-
-/* ▼▼▼ 修正箇所: laptop-frame関連を削除し、新しいスタイルを追加 ▼▼▼ */
-
-/* 枠を外した画像の調整用 */
-.content-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 12px; /* 画像の角を少し丸くする */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* ほんのり影をつける */
+.laptop-frame {
+    width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #222; padding: 3% 3% 5% 3%;
+    border-radius: 20px 20px 5px 5px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative; overflow: hidden;
 }
-
-/* ヒーローセクションの画像だけ少し斜めにする演出 */
-.hero-visual .content-image {
-    transform: rotateY(-10deg) rotateX(5deg);
-    transition: transform 0.5s var(--ease-out-expo);
-    max-width: 800px;
-}
-.hero-visual .content-image:hover {
-    transform: rotateY(0) rotateX(0);
-}
-
-/* ▲▲▲ 修正ここまで ▲▲▲ */
-
+.hero .laptop-frame { transform: rotateY(-10deg) rotateX(5deg); transition: transform 0.5s var(--ease-out-expo); }
+.hero .laptop-frame:hover { transform: rotateY(0) rotateX(0); }
+.laptop-screen { width: 100%; height: 100%; background: #000; overflow: hidden; position: relative; }
+.laptop-screen img { width: 100%; height: auto; display: block; }
 
 /* --- PAIN POINTS --- */
 .pain-points-section { 
@@ -149,11 +134,7 @@ header {
 .feature-content h3 { font-size: 1.8rem; margin-bottom: 20px; line-height: 1.4; }
 .feature-content p { color: var(--text-secondary); font-size: 1rem; }
 .feature-visual { flex: 1; display: flex; justify-content: center; }
-
-/* ▼▼▼ 修正箇所: feature-visual内のlaptop-frameスタイルも削除 ▼▼▼ */
-/* .feature-visual .laptop-frame { max-width: 100%; box-shadow: 0 15px 30px rgba(0,0,0,0.15); } は削除されました */
-/* ▲▲▲ 修正ここまで ▲▲▲ */
-
+.feature-visual .laptop-frame { max-width: 100%; box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
 
 /* --- DIFFERENCE --- */
 .comparison-section { 
@@ -201,11 +182,11 @@ header {
 
 /* --- CTAバナー (静的配置版) --- */
 .cta-section-static {
-    background-color: #F5F1ED;
-    border: 4px solid var(--neon-pink);
+    background-color: #F5F1ED; /* ライトベージュ */
+    border: 4px solid var(--neon-pink); /* ネオンピンクの太いライン */
     border-radius: 24px;
     padding: 60px 20px;
-    margin: 120px auto;
+    margin: 120px auto; /* 上下の余白 */
     max-width: 1200px;
     text-align: center;
     position: relative;
@@ -239,11 +220,13 @@ header {
     z-index: 1000;
     width: 90%;
     max-width: 600px; 
+    
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 0, 102, 0.2);
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    padding: 4px;
+    
+    padding: 4px; /* 白い枠線を細く修正しました */
     border-radius: 60px;
     display: flex;
     justify-content: center;
@@ -253,7 +236,7 @@ header {
 /* 固定バーの中のメインボタン */
 .cta-btn-main {
     display: block;
-    background-color: var(--neon-pink);
+    background-color: var(--neon-pink); /* ネオンピンク */
     color: #fff;
     font-weight: 700;
     text-decoration: none;
