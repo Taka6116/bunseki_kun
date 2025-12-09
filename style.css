@@ -89,29 +89,40 @@ header {
 .highlight-container { display: inline-block; position: relative; }
 .highlight-bg { position: absolute; bottom: 5px; left: -5px; right: -5px; height: 0.7em; background: #B3003B; z-index: -1; transform: skewX(-10deg); }
 .hero p { font-size: 1.2rem; font-weight: 700; }
-.hero-visual { flex: 1; position: relative; display: flex; justify-content: flex-end; perspective: 1000px; }
+.hero-visual { flex: 1; position: relative; display: flex; justify-content: center; align-items: center; perspective: 1000px; }
 
 .speech-bubble {
-    position: absolute; top: -130px; left: 100px; background: #fff;
-    color: #D6004D; 
+    position: absolute;
+    top: -60px;   /* 画像の上に配置 */
+    left: -20px;  /* 画像の左上に配置 */
+    /* その他の設定は現状のままでOK */
+    background: #fff;
+    color: #D6004D;
     padding: 15px;
-    border-radius: 50%; width: 140px; height: 140px; display: flex; align-items: center; justify-content: center;
-    text-align: center; font-weight: 900; border: 3px solid #D6004D; box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
-    z-index: 3; transform: rotate(-10deg);
-    
+    border-radius: 50%;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 900;
+    border: 3px solid #D6004D;
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+    z-index: 3;
+    transform: rotate(-10deg);
     font-size: 0.9rem;
     line-height: 1.4;
 }
 
 /* ▼▼▼ 修正箇所：PCの枠や黒背景をすべて削除し、画像だけ表示するスタイルに変更 ▼▼▼ */
 .laptop-frame {
-    width: 100%; 
-    max-width: 800px; 
-    /* 背景色やパディングを削除 */
-    background: transparent; 
+    width: 100%;
+    max-width: 600px; /* ★画像を大きすぎず小さすぎず制御（お好みで500px~700pxで調整） */
+    background: transparent;
     padding: 0;
     box-shadow: none;
-    position: relative; 
+    position: relative;
     overflow: visible;
 }
 .hero .laptop-frame { 
