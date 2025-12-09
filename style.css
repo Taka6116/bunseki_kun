@@ -563,3 +563,172 @@ footer { background: #222; color: #fff; padding: 60px 0 120px; text-align: cente
     .sticky-bar { width: 95%; bottom: 15px; padding: 8px; }
     .cta-btn-main { font-size: 1rem; padding: 14px 0; }
 }
+
+/* =========================================
+   ▼ レスポンシブ対応（ここから下を追記） ▼
+   ========================================= */
+
+/* --- タブレット・小型ノートPC以下 (1024px以下) --- */
+@media (max-width: 1024px) {
+    /* ヘッダーの調整：メニューとボタンが重ならないように */
+    .site-header {
+        padding: 0 20px;
+    }
+    
+    /* 画面が狭くなったら中央のメニューを非表示にする
+       （本格的にやるならハンバーガーメニューが必要ですが、一旦非表示で崩れを防ぎます） */
+    .header-nav {
+        display: none;
+    }
+
+    /* ヒーローセクションの文字サイズ調整 */
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+}
+
+/* --- スマホ・タブレット縦 (768px以下) --- */
+@media (max-width: 768px) {
+    
+    /* 1. ヘッダーのスマホ最適化 */
+    .site-header {
+        height: 60px; /*高さを少し小さく*/
+        padding: 0 15px;
+    }
+    
+    .logo {
+        font-size: 1.1rem; /* ロゴを少し小さく */
+        min-width: auto;
+    }
+    
+    /* ボタン群：スマホでは「無料で始める」だけ残して他を消す（スペース確保のため） */
+    .header-actions .btn-ghost,
+    .header-actions .btn-blue {
+        display: none;
+    }
+    .header-actions .btn-pink {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+
+    /* 2. ヒーローセクション（メインビジュアル） */
+    .hero {
+        margin-top: 60px; /* ヘッダーの高さ分 */
+        padding: 40px 0;
+        min-height: auto; /* 高さをコンテンツに合わせる */
+    }
+    
+    .hero .container {
+        flex-direction: column; /* 縦並びにする */
+        gap: 50px;
+        padding-top: 20px;
+        text-align: center;
+    }
+    
+    .hero h1 {
+        font-size: 2rem; /* スマホ用に文字サイズ縮小 */
+        white-space: normal; /* 折り返し許可 */
+    }
+    
+    .hero-text {
+        max-width: 100%;
+    }
+    
+    /* 吹き出しの位置調整（PC用の絶対配置をリセット） */
+    .speech-bubble {
+        top: -60px !important;     /* 画像の上に配置 */
+        left: 50% !important;      /* 左右中央 */
+        transform: translateX(-50%) rotate(-10deg); /* 中央寄せ補正 */
+        width: 100px;              /* サイズ縮小 */
+        height: 100px;
+        font-size: 0.75rem;
+        padding: 10px;
+    }
+
+    /* 3. 各セクション共通 */
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    /* 機能セクション：縦並びにする */
+    .feature-row, 
+    .feature-row:nth-child(even) {
+        flex-direction: column; /* 常に縦並び */
+        padding: 20px;
+        gap: 30px;
+    }
+    
+    .feature-content {
+        text-align: center; /* テキスト中央寄せ */
+    }
+    
+    .feature-number {
+        margin: 0 auto 10px auto;
+    }
+
+    /* 4. 比較表（スマホでは真ん中の「分析君」だけ見せる） */
+    .comp-table-wrapper {
+        grid-template-columns: 1fr; /* 1列にする */
+    }
+    
+    .comp-col-side {
+        display: none; /* 左右の列（項目名・他社）を消す */
+    }
+    
+    .comp-col-center {
+        margin: 0;
+        width: 100%;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* 項目名が消えるので、セルの中に擬似要素でラベルを出すテクニック */
+    .comp-col-center .comp-cell:nth-child(2)::before { content: "専門知識："; font-size: 0.8rem; display: block; color: rgba(255,255,255,0.7); }
+    .comp-col-center .comp-cell:nth-child(3)::before { content: "内容提案："; font-size: 0.8rem; display: block; color: rgba(255,255,255,0.7); }
+    .comp-col-center .comp-cell:nth-child(4)::before { content: "チャンネル分析："; font-size: 0.8rem; display: block; color: rgba(255,255,255,0.7); }
+    .comp-col-center .comp-cell:nth-child(5)::before { content: "見やすさ："; font-size: 0.8rem; display: block; color: rgba(255,255,255,0.7); }
+    
+    .comp-col-center .comp-cell {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+    }
+
+    /* 5. 使い方ステップ */
+    .steps-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        margin-top: 40px;
+    }
+    
+    .step-arrow {
+        /* 右矢印を下矢印に変更 */
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 15px solid var(--grid-line);
+        border-bottom: none;
+        margin: 0;
+    }
+    
+    .step-card {
+        width: 100%;
+        padding: 30px 20px;
+    }
+
+    /* 6. お悩み（Marquee） */
+    .pain-card {
+        min-width: 260px; /* カードを少し小さく */
+        padding: 20px;
+    }
+    
+    /* 7. 下部固定バー */
+    .sticky-bar {
+        width: 92%;
+        bottom: 15px;
+        padding: 5px;
+    }
+    .cta-btn-main {
+        font-size: 1rem;
+        padding: 12px 0;
+    }
+}
