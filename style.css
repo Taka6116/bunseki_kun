@@ -126,10 +126,8 @@ header {
     overflow: visible;
 }
 .hero .laptop-frame { 
-    transform: rotateY(-10deg) rotateX(5deg); 
-    transition: transform 0.5s var(--ease-out-expo); 
+    transform: none; 
 }
-.hero .laptop-frame:hover { transform: rotateY(0) rotateX(0); }
 
 .laptop-screen { 
     width: 100%; 
