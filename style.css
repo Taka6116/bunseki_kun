@@ -6,8 +6,8 @@
     --hero-red: #FF0000;
     --hero-dots: #FFB700;
     --btn-blue: #3B82F6;
-    --btn-pink: #FF004E; /* 既存のピンク */
-    --neon-pink: #FF0066; /* 新しいネオンピンク */
+    --btn-pink: #FF004E;
+    --neon-pink: #FF0066;
     --grid-line: #E5E5E5;
     --comp-dark-bg: #1A202C;
     --comp-red: #E60033;
@@ -29,7 +29,6 @@ body {
     font-family: var(--font-sans);
     overflow-x: hidden;
     line-height: 1.8;
-    /* 固定CTAの分だけ下の余白を確保 */
     padding-bottom: 120px; 
 }
 h1, h2, h3, h4 { font-weight: 900; line-height: 1.2; }
@@ -91,21 +90,53 @@ header {
 .highlight-bg { position: absolute; bottom: 5px; left: -5px; right: -5px; height: 0.7em; background: #B3003B; z-index: -1; transform: skewX(-10deg); }
 .hero p { font-size: 1.2rem; font-weight: 700; }
 .hero-visual { flex: 1; position: relative; display: flex; justify-content: flex-end; perspective: 1000px; }
+
 .speech-bubble {
     position: absolute; top: -130px; left: 100px; background: #fff;
-    color: #D6004D; padding: 20px;
+    color: #D6004D; 
+    padding: 15px;
     border-radius: 50%; width: 140px; height: 140px; display: flex; align-items: center; justify-content: center;
     text-align: center; font-weight: 900; border: 3px solid #D6004D; box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
     z-index: 3; transform: rotate(-10deg);
+    
+    font-size: 0.9rem;
+    line-height: 1.4;
 }
+
+/* ▼▼▼ 修正箇所：PCの枠や黒背景をすべて削除し、画像だけ表示するスタイルに変更 ▼▼▼ */
 .laptop-frame {
-    width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #222; padding: 3% 3% 5% 3%;
-    border-radius: 20px 20px 5px 5px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative; overflow: hidden;
+    width: 100%; 
+    max-width: 800px; 
+    /* 背景色やパディングを削除 */
+    background: transparent; 
+    padding: 0;
+    box-shadow: none;
+    position: relative; 
+    overflow: visible;
 }
-.hero .laptop-frame { transform: rotateY(-10deg) rotateX(5deg); transition: transform 0.5s var(--ease-out-expo); }
+.hero .laptop-frame { 
+    transform: rotateY(-10deg) rotateX(5deg); 
+    transition: transform 0.5s var(--ease-out-expo); 
+}
 .hero .laptop-frame:hover { transform: rotateY(0) rotateX(0); }
-.laptop-screen { width: 100%; height: 100%; overflow: hidden; position: relative; }
-.laptop-screen img { width: 100%; height: auto; display: block; }
+
+.laptop-screen { 
+    width: 100%; 
+    height: auto; 
+    /* 黒背景を削除（透明に） */
+    background: transparent; 
+    overflow: visible; 
+    position: relative; 
+}
+.laptop-screen img { 
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    /* 画像に少し影をつけて立体感を出す（任意） */
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+}
+/* ▲▲▲ 修正ここまで ▲▲▲ */
+
 
 /* --- PAIN POINTS --- */
 .pain-points-section { 
@@ -134,7 +165,7 @@ header {
 .feature-content h3 { font-size: 1.8rem; margin-bottom: 20px; line-height: 1.4; }
 .feature-content p { color: var(--text-secondary); font-size: 1rem; }
 .feature-visual { flex: 1; display: flex; justify-content: center; }
-.feature-visual .laptop-frame { max-width: 100%; box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+.feature-visual .laptop-frame { max-width: 100%; box-shadow: none; /* 影はimg側でつけるので消す */ }
 
 /* --- DIFFERENCE --- */
 .comparison-section { 
@@ -182,11 +213,11 @@ header {
 
 /* --- CTAバナー (静的配置版) --- */
 .cta-section-static {
-    background-color: #F5F1ED; /* ライトベージュ */
-    border: 4px solid var(--neon-pink); /* ネオンピンクの太いライン */
+    background-color: #F5F1ED;
+    border: 4px solid var(--neon-pink);
     border-radius: 24px;
     padding: 60px 20px;
-    margin: 120px auto; /* 上下の余白 */
+    margin: 120px auto;
     max-width: 1200px;
     text-align: center;
     position: relative;
@@ -226,7 +257,7 @@ header {
     border: 1px solid rgba(255, 0, 102, 0.2);
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     
-    padding: 4px; /* 白い枠線を細く修正しました */
+    padding: 4px;
     border-radius: 60px;
     display: flex;
     justify-content: center;
@@ -236,7 +267,7 @@ header {
 /* 固定バーの中のメインボタン */
 .cta-btn-main {
     display: block;
-    background-color: var(--neon-pink); /* ネオンピンク */
+    background-color: var(--neon-pink);
     color: #fff;
     font-weight: 700;
     text-decoration: none;
