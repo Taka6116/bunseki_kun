@@ -323,6 +323,123 @@ h1, h2, h3, h4 { font-weight: 900; line-height: 1.2; }
     border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid var(--hero-dots);
 }
 
+/* --- HOW TO USE --- */
+.how-to-section {
+    background: #fff;
+    padding: var(--section-spacing) 0;
+    /* border-bottom: 1px solid var(--grid-line); */
+}
+
+.steps-container {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: flex-start; を stretch に変更して高さを揃える */
+    align-items: stretch; 
+    gap: 20px;
+    margin-top: 60px;
+    position: relative;
+}
+
+/* ステップカード */
+.step-card {
+    flex: 1;
+    background: var(--bg-light); 
+    padding: 40px 30px;
+    border-radius: 24px;
+    text-align: center;
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    
+    /* 中身を上下中央揃えにする場合（任意） */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */ /* コンテンツが少ない時に中央に寄せたい場合はコメントアウトを外す */
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-color: var(--neon-pink); 
+}
+
+/* 数字のデザイン */
+.step-number {
+    font-family: var(--font-mono);
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--neon-pink);
+    opacity: 0.2; 
+    margin-bottom: 10px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+/* コンテンツ */
+.step-content {
+    position: relative;
+    z-index: 1;
+    margin-top: 40px; 
+    width: 100%; /* 幅を確保 */
+}
+
+.step-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    color: var(--text-primary);
+}
+
+.step-content p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* 矢印（PC用：右向き三角） */
+.step-arrow {
+    align-self: center; /* 常に上下中央に配置 */
+    width: 0; 
+    height: 0; 
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid var(--grid-line); 
+    flex-shrink: 0;
+    margin: 0 10px; /* 矢印周りの余白 */
+}
+
+/* Responsive (SP) */
+@media (max-width: 768px) {
+    .steps-container {
+        flex-direction: column;
+        gap: 40px;
+        align-items: center; /* SPでは高さを揃える必要がないのでcenterに戻す */
+    }
+
+    .step-card {
+        width: 100%;
+        padding: 30px;
+    }
+
+    /* 矢印（SP用：下向き三角） */
+    .step-arrow {
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 15px solid var(--grid-line); 
+        border-bottom: none;
+        margin: 0;
+    }
+    
+    .step-number {
+        font-size: 3.5rem;
+    }
+}
+
 /* --- FAQ --- */
 .faq-section { background: #fff; padding: var(--section-spacing) 0; }
 .accordion-item { border-bottom: 1px solid var(--grid-line); background: #fff; padding: 0 20px; }
