@@ -39,24 +39,135 @@ h1, h2, h3, h4 { font-weight: 900; line-height: 1.2; }
 .section-header h2 { font-size: 3rem; }
 
 /* --- HEADER --- */
-header {
-    position: fixed; top: 0; left: 0; width: 100%; background: #fff; padding: 15px 30px;
-    display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 1px solid #eee;
+/* --- HEADER (Professional Layout) --- */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* 高さを明示してレイアウトを安定させる */
+    background: rgba(255, 255, 255, 0.95); /* わずかに透過させモダンな印象に */
+    backdrop-filter: blur(10px); /* すりガラス効果 */
+    padding: 0 30px;
+    
+    /* フレックスボックスで配置 */
+    display: flex;
+    justify-content: space-between; /* 両端に要素を飛ばす */
+    align-items: center;
+    
+    z-index: 100;
+    border-bottom: 1px solid rgba(0,0,0,0.05); /* 境界線を繊細に */
 }
-.header-left { display: flex; align-items: center; gap: 40px; }
-.logo { font-size: 1.4rem; font-weight: 900; display: flex; flex-direction: column; line-height: 1; align-items: flex-start; color: #000; }
-.logo span { font-size: 0.6rem; font-weight: 700; letter-spacing: 1px; margin-top: 2px; color: #555; }
-.nav-links { display: flex; gap: 25px; }
-.nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 700; font-size: 0.9rem; }
-.header-right { display: flex; gap: 15px; align-items: center; }
+
+/* 1. 左：ブランドエリア */
+.header-brand {
+    display: flex;
+    align-items: center;
+    min-width: 180px; /* 左側のスペースを確保 */
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 900;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    color: var(--text-primary);
+}
+
+.logo span {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 2px;
+    color: var(--text-secondary);
+}
+
+/* 2. 中央：ナビゲーション（絶対配置による完全中央寄せ） */
+.header-nav {
+    position: absolute; /* 親要素に関係なく配置 */
+    left: 50%;          /* 画面の左から50%の位置に */
+    transform: translateX(-50%); /* 要素の幅の半分だけ戻す＝完全中央 */
+    
+    display: flex;
+    gap: 32px; /* リンク間の余白を広めにとって視認性を高める */
+}
+
+.nav-item {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    position: relative;
+    transition: color 0.3s;
+}
+
+/* ホバー時のマイクロインタラクション（下線が伸びるアニメーション） */
+.nav-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--btn-pink);
+    transition: width 0.3s ease;
+}
+
+.nav-item:hover {
+    color: var(--btn-pink);
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+/* 3. 右：アクションエリア */
+.header-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* ボタンの微調整 */
 .btn {
-    padding: 10px 20px; border-radius: 4px; font-weight: 700; text-decoration: none; font-size: 0.9rem;
-    transition: transform 0.2s; cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 6px; /* 角丸を少し小さくしてシャープに */
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.85rem; /* ボタン内の文字サイズを少し調整 */
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    white-space: nowrap; /* テキストの折り返し防止 */
 }
-.btn:hover { transform: translateY(-2px); }
-.btn-outline { border: 2px solid var(--text-primary); color: var(--text-primary); background: #fff; }
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ログインボタン専用（枠線なしですっきりさせる） */
+.btn-ghost {
+    color: var(--text-secondary);
+    background: transparent;
+}
+.btn-ghost:hover {
+    color: var(--text-primary);
+    background: rgba(0,0,0,0.03);
+    transform: none; /* これは浮かせない */
+    box-shadow: none;
+}
+
+.btn-outline { border: 1px solid var(--grid-line); color: var(--text-primary); background: #fff; }
 .btn-blue { background: var(--btn-blue); color: #fff; border: none; }
 .btn-pink { background: var(--btn-pink); color: #fff; border: none; }
+
+/* --- レスポンシブ対応（画面が狭いとき） --- */
+@media (max-width: 1100px) {
+    /* 画面幅が狭くなったら中央メニューを消す（スマホメニューへの切り替え用） */
+    .header-nav {
+        display: none;
+    }
+}
 
 /* --- HERO SECTION --- */
 .hero {
