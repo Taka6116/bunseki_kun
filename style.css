@@ -93,8 +93,8 @@ header {
 
 .speech-bubble {
     position: absolute;
-    top: -60px;   /* 画像の上に配置 */
-    left: -20px;  /* 画像の左上に配置 */
+    top: 240px;   /* 画像の上に配置 */
+    left: -50px;  /* 画像の左上に配置 */
     /* その他の設定は現状のままでOK */
     background: #fff;
     color: #D6004D;
