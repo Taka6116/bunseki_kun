@@ -98,34 +98,14 @@ header {
     text-align: center; font-weight: 900; border: 3px solid #D6004D; box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
     z-index: 3; transform: rotate(-10deg);
 }
-
-/* 画像単体を表示するためのスタイル */
-.content-image {
-    width: 100%;
-    max-width: 800px; /* 画像が大きすぎないように制限 */
-    height: auto;
-    display: block;
-    
-    /* ほんのり影をつけて立体感を出す（お好みで） */
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.2));
-    
-    /* ヒーローセクションのアニメーション用（必要なら残す） */
-    transform: rotateY(-10deg) rotateX(5deg);
-    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+.laptop-frame {
+    width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #222; padding: 3% 3% 5% 3%;
+    border-radius: 20px 20px 5px 5px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative; overflow: hidden;
 }
-
-/* ホバー時に正面を向くアニメーション */
-.hero-visual:hover .content-image {
-    transform: rotateY(0) rotateX(0);
-}
-
-/* SP対応（スマホ） */
-@media (max-width: 992px) {
-    .content-image {
-        max-width: 100%;
-        transform: none; /* スマホでは回転させない */
-    }
-}
+.hero .laptop-frame { transform: rotateY(-10deg) rotateX(5deg); transition: transform 0.5s var(--ease-out-expo); }
+.hero .laptop-frame:hover { transform: rotateY(0) rotateX(0); }
+.laptop-screen { width: 100%; height: 100%; background: #000; overflow: hidden; position: relative; }
+.laptop-screen img { width: 100%; height: auto; display: block; }
 
 /* --- PAIN POINTS --- */
 .pain-points-section { 
