@@ -17,7 +17,6 @@
     --font-mono: 'Space Mono', monospace;
     --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
     
-    /* 共通の余白設定（100px） */
     --section-spacing: 100px;
 }
 
@@ -90,36 +89,59 @@ header {
 .highlight-bg { position: absolute; bottom: 5px; left: -5px; right: -5px; height: 0.7em; background: #B3003B; z-index: -1; transform: skewX(-10deg); }
 .hero p { font-size: 1.2rem; font-weight: 700; }
 .hero-visual { flex: 1; position: relative; display: flex; justify-content: flex-end; perspective: 1000px; }
+
+/* 吹き出しのスタイル（修正済み：改行・サイズ調整） */
 .speech-bubble {
     position: absolute; top: -130px; left: 100px; background: #fff;
-    color: #D6004D; padding: 20px;
+    color: #D6004D; 
+    padding: 15px; /* 余白を調整 */
     border-radius: 50%; width: 140px; height: 140px; display: flex; align-items: center; justify-content: center;
     text-align: center; font-weight: 900; border: 3px solid #D6004D; box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
     z-index: 3; transform: rotate(-10deg);
+    
+    font-size: 0.9rem; /* 文字サイズ調整 */
+    line-height: 1.4;  /* 行間調整 */
 }
 
-/* ▼▼▼ 修正箇所: laptop-frame関連を削除し、新しいスタイルを追加 ▼▼▼ */
-
-/* 枠を外した画像の調整用 */
-.content-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 12px; /* 画像の角を少し丸くする */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* ほんのり影をつける */
+/* ラップトップフレーム（修正版: 枠を透明化し、サイズ制限だけ残す） */
+.laptop-frame {
+    width: 100%; 
+    max-width: 800px; /* ★重要：このサイズ制限がレイアウトを保ちます */
+    background: transparent; /* 黒背景を透明に */
+    padding: 0; /* ベゼルをなくす */
+    box-shadow: none; /* 枠の影を消す */
+    position: relative; 
+    overflow: hidden;
 }
 
-/* ヒーローセクションの画像だけ少し斜めにする演出 */
-.hero-visual .content-image {
-    transform: rotateY(-10deg) rotateX(5deg);
-    transition: transform 0.5s var(--ease-out-expo);
-    max-width: 800px;
+.hero .laptop-frame { 
+    transform: rotateY(-10deg) rotateX(5deg); 
+    transition: transform 0.5s var(--ease-out-expo); 
 }
-.hero-visual .content-image:hover {
-    transform: rotateY(0) rotateX(0);
+.hero .laptop-frame:hover { 
+    transform: rotateY(0) rotateX(0); 
 }
 
-/* ▲▲▲ 修正ここまで ▲▲▲ */
+.laptop-screen { 
+    width: 100%; 
+    height: 100%; 
+    background: transparent; 
+    overflow: hidden; 
+    position: relative; 
+}
+
+.laptop-screen img { 
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    border-radius: 12px; /* 画像自体に角丸 */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2); /* 画像自体に影 */
+}
+
+/* サービス概要セクションでのサイズ調整 */
+.feature-visual .laptop-frame { 
+    max-width: 100%; 
+}
 
 
 /* --- PAIN POINTS --- */
@@ -149,11 +171,6 @@ header {
 .feature-content h3 { font-size: 1.8rem; margin-bottom: 20px; line-height: 1.4; }
 .feature-content p { color: var(--text-secondary); font-size: 1rem; }
 .feature-visual { flex: 1; display: flex; justify-content: center; }
-
-/* ▼▼▼ 修正箇所: feature-visual内のlaptop-frameスタイルも削除 ▼▼▼ */
-/* .feature-visual .laptop-frame { max-width: 100%; box-shadow: 0 15px 30px rgba(0,0,0,0.15); } は削除されました */
-/* ▲▲▲ 修正ここまで ▲▲▲ */
-
 
 /* --- DIFFERENCE --- */
 .comparison-section { 
@@ -243,14 +260,13 @@ header {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 0, 102, 0.2);
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    padding: 4px;
+    padding: 4px; /* 枠を細く修正 */
     border-radius: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* 固定バーの中のメインボタン */
 .cta-btn-main {
     display: block;
     background-color: var(--neon-pink);
@@ -272,7 +288,6 @@ header {
     box-shadow: 0 10px 20px rgba(255, 0, 102, 0.5);
 }
 
-/* ボタンの上の小さな吹き出し（固定バー用） */
 .sticky-label {
     position: absolute;
     top: -15px;
